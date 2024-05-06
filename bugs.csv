@@ -1,0 +1,5 @@
+bugid,description,branch,developer name,bug priority,github Url
+743,fix login bug,login2,sagirab,1,
+985,fix register UI,register1,alon,3,
+129,build user page,user0,yuval,2,
+874,arrange code in region,region,elon,5,
