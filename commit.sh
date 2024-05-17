@@ -19,8 +19,6 @@ priority=$(grep $current_branch bugs.csv | cut -d ',' -f5)
 github_url=$(grep $current_branch bugs.csv | cut -d ',' -f6)
 
 commit_message="${bug_id}:${date}:${current_branch}:${dev_name}:${priority}:${description}:${developer_description}"
-echo $commit_message
-exit 1
 
 git add .
 git commit -m "$commit_message"
