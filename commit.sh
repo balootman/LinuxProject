@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ "$#" -ne 1 ]; then
-    echo "ERROR: needed 1 argument for Dev Description!"
-    exit 1
-fi
 
 if [ ! -f "bugs.csv" ]; then
     echo "File 'bugs.csv' is not available."
@@ -15,16 +11,16 @@ developer_description="$1"
 # Get the current Git branch
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
-parameters=$(grep $current_barnch bugs.csv)
-
-bug_id=$($parameters | cut -d',' -f1)
-description=$($parameters | cut -d',' -f2)
+bug_id=$(grep $current_branch bugs.csv | cut -d ',' -f1)
+description=$(grep $current_branch bugs.csv | cut -d ',' -f2)
 date=$(date +"%Y-%m-%d %H:%M:%S")
-dev_name=$($parameters | cut -d',' -f4)
-priority=$($parameters | cut -d',' -f5)
-github_url=$($parameters | cut -d',' -f6)
+dev_name=$(grep $current_branch bugs.csv | cut -d ',' -f4)
+priority=$(grep $current_branch bugs.csv | cut -d ',' -f5)
+github_url=$(grep $current_branch bugs.csv | cut -d ',' -f6)
 
 commit_message="${bug_id}:${date}:${current_branch}:${dev_name}:${priority}:${description}:${developer_description}"
+echo $commit_message
+exit 1
 
 git add .
 git commit -m "$commit_message"
